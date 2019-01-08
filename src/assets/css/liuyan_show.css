@@ -1,0 +1,207 @@
+.show {
+  background: #fff;
+  font-size: 14px;
+}
+.show .nav_show {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+  background: #f5f7fa;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.show .nav_show .nav_show_s {
+  display: inline-block;
+  font-size: 12px;
+}
+.show .nav_show .nav_show_s input {
+  height: 16px;
+  width: 26px;
+}
+.show .nav_show .nav_show_s button {
+  padding: 0px 4px;
+  font-size: 12px;
+  margin-left: 10px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.show .nav_show .nav_show_s button:hover {
+  color: #3e89fa;
+  border: 1px solid #3e89fa;
+}
+.show .nav_show .nav_show_s a {
+  color: #2d64b3;
+  font-size: 12px;
+}
+.show .nav_show .nav_show_s span {
+  color: #F60;
+  margin: 0 3px;
+}
+.show .k_body {
+  width: 1000px;
+  margin: 0 auto;
+}
+.show .k_body .k_list {
+  width: 740px;
+  border: 1px solid #e4e6eb;
+}
+.show .k_body .k_list .title_show {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-bottom: 1px solid #e4e6eb;
+}
+.show .k_body .k_list .title_show div {
+  display: inline-block;
+}
+.show .k_body .k_list .title_show .right button {
+  padding: 4px 8px;
+  font-size: 12px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.show .k_body .k_list .title_show .right button:hover {
+  color: #3e89fa;
+  border: 1px solid #3e89fa;
+}
+.show .k_body .k_list .show_list_tiezi_body {
+  position: relative;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_tiezi {
+  background: #FBFBFD;
+  border-bottom: 1px solid #e4e6eb;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_tiezi .d_author {
+  width: 130px;
+  text-align: center;
+  padding: 15px 0;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_tiezi .d_author img {
+  width: 80px;
+  height: 80px;
+  padding: 4px;
+  background: none repeat scroll 0 0 #FFF;
+  border: 1px solid #CCC;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_tiezi .d_author p {
+  padding: 10px;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_tiezi .d_neirong {
+  width: 600px;
+  min-height: 168px;
+  background: #fff;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_tiezi .d_neirong .list_neirong {
+  padding: 16px 10px 10px;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_tiezi .d_neirong .c_img {
+  padding-bottom: 40px;
+  padding-left: 10px;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_neirong_nth {
+  position: absolute;
+  right: 20px;
+  bottom: 14px;
+  font-size: 12px;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_neirong_nth span {
+  margin: 0 4px;
+  color: #999;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_neirong_nth a {
+  color: #2d64b3;
+}
+.show .k_body .k_list .show_list_tiezi_body .list_neirong_nth a img {
+  height: 13px;
+  width: 40px;
+  margin-left: 7px;
+  vertical-align: middle;
+  margin-top: -0.2em;
+}
+.pinglunqu {
+  padding: 10px;
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #F5F5F5;
+  background: url(../f_editor.jpg);
+}
+.pinglunqu .pingl_title p {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Microsoft Yahei", "ST Hei";
+}
+.pinglunqu .pingl_title p span {
+  background-position: 0 0;
+  background: url(../poster_icons.png) no-repeat;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  margin-bottom: -1px;
+}
+.pinglunqu .div_pinglun {
+  border: 1px solid #dfdfdf;
+  background: #FAFAFA;
+  padding: 10px;
+  width: 740px;
+  position: relative;
+}
+.pinglunqu .pinglunqu_top {
+  padding-left: 16px;
+}
+.pinglunqu .pinglunqu_top span {
+  width: 48px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  display: inline-block;
+  cursor: pointer;
+  color: #3163B6;
+  background: url(../icon_png.png) no-repeat;
+}
+.pinglunqu .pinglunqu_top span:nth-child(1) {
+  background-position: -6px 0;
+}
+.pinglunqu .pinglunqu_top span:nth-child(2) {
+  background-position: -73px 0;
+}
+.pinglunqu .pinglunqu_top span:nth-child(3) {
+  background-position: -207px 0;
+}
+.pinglunqu .pinglunqu_content textarea {
+  width: 100%;
+  padding: 10px;
+  height: 80px;
+  resize: none;
+  font-size: 14px;
+  color: #575252;
+}
+.pinglunqu .pinglunqu_bottom {
+  margin-top: 6px;
+}
+.pinglunqu .pinglunqu_bottom span {
+  padding: 8px 14px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 2px;
+  overflow: hidden;
+  font-size: 14px;
+  background: #398BFC;
+}
+.overflow {
+  overflow: hidden;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+button {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}

@@ -27,38 +27,7 @@
         
         <button @click='tijiao'>提交</button>
       </div>
-      <div>
-        <table border="1" style="border-collapse: collapse">
-          <thead>
-            <tr>
-              <th>新增评论</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                评论内容：
-              </td>
-              <td>
-                <input type="text" v-model="plneirong">
-              </td>
-              
-            </tr>
-            <tr>
-              <td>
-
-              </td>
-              <td>
-                <input type="text" v-model="plneirong">
-              </td>
-            </tr>
-            <tr>
-              <td><input type="file" class="upload" @change="addImg" ref="inputer" multiple accept="image/png,image/jpeg,image/gif,image/jpg"/></td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
+      
     </div>
 </template>
 

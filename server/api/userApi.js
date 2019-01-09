@@ -62,8 +62,6 @@ router.post('/upload', (req, res) => {
             console.log(err);
             return;
         }
-        console.log(fields)
-        console.log(files)
         
         var oldPath=files.multipartFiles.path;
         var oldName=files.multipartFiles.name;
@@ -151,6 +149,16 @@ router.post('/add_contact', (req, res) => {
         console.log(result)
         if (result) {
             jsonWrite(res, result);
+            //向评论表中插入一条数据
+            // console.log("bb："+result.insertId)
+            var shengchengID = result.insertId;//本次新增留言的生成id
+            var sql2 = $sql.user.add_pinglun;
+            var arr2 = [params.name,1,shengchengID,params.neirong,params.address,params.fabu_time];
+            conn.query(sql2,arr2,function(e,result){
+                if(e){
+                    console.log('向评论表中插入一条数据:'+e)
+                }
+            })
         }
         // res.end(JSON.stringify(result));
         // if (result) {

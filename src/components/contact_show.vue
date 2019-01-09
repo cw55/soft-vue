@@ -91,7 +91,7 @@
                         <textarea name="" id="pingluntext" cols="30" rows="10" placeholder="请输入评论内容"></textarea>
                     </div>
                     <div class="pinglunqu_bottom">
-                        <span>评论</span>
+                        <span @click="pinglun1">评论</span>
                     </div>
                 </div>
                 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" style="background: rgba(1,1,1,0.3);">
@@ -157,22 +157,22 @@ export default {
         var mounted = this.$route.query.n;
         console.log(mounted);
         //带入的item  
-        var list = this.$route.query.list;
-        console.log(list);
-        this.liuyan_obj = list;
+        // var list = this.$route.query.list;
+        // console.log(list);
+        // this.liuyan_obj = list;
 
         //获取这个帖子下面的评论
 
         //获取这个帖子下面的回复并对应到位置
 
-        // this.$http.post('api/user/take_liuyan',{
-        //     id:mounted
-        // },{}).then((Response)=>{
-        //     console.log(Response);
-        //     this.liuyan_obj = Response.data[0];
-        // }).catch(function(err){
-        //     console.log(err)
-        // })
+        this.$http.post('api/user/take_liuyan',{
+            id:mounted
+        },{}).then((Response)=>{
+            console.log(Response);
+            this.liuyan_obj = Response.data[0];
+        }).catch(function(err){
+            console.log(err)
+        })
 
         // this.$http.post('api/user/take_liuyan',{
         //     id:mounted
@@ -198,30 +198,35 @@ export default {
             this.fil = inputDOM.files;
             let oldLen=this.imgLen;
             let len=this.fil.length+oldLen;
+
+            //！！上传多张出错，初期修改默认只能传1张（后台接口问题）
+            if(len>1){
+                alert('sorry，目前最多可上传1张，您还可以上传'+(1-oldLen)+'张');
+                return false;
+            }
+
             if(len>4){
-            alert('最多可上传4张，您还可以上传'+(4-oldLen)+'张');
-            return false;
+                alert('最多可上传4张，您还可以上传'+(4-oldLen)+'张');
+                return false;
             }
             for (let i=0; i < this.fil.length; i++) {
-            let size = Math.floor(this.fil[i].size / 1024);
-            if (size > 5*1024*1024) {
-                alert('请选择5M以内的图片！');
-                return false
-            }
-            this.imgLen++;
-            this.$set(this.imgs,this.fil[i].name+'?'+new Date().getTime()+i,this.fil[i]);
-            // console.log(this.fil)
-            // console.log(this.imgs)
+                let size = Math.floor(this.fil[i].size / 1024);
+                if (size > 5*1024*1024) {
+                    alert('请选择5M以内的图片！');
+                    return false
+                }
+                this.imgLen++;
+                this.$set(this.imgs,this.fil[i].name+'?'+new Date().getTime()+i,this.fil[i]);
             }
         },
         getObjectURL(file) {
             var url = null ;
             if (window.createObjectURL!=undefined) { // basic
-            url = window.createObjectURL(file) ;
+                url = window.createObjectURL(file) ;
             } else if (window.URL!=undefined) { // mozilla(firefox)
-            url = window.URL.createObjectURL(file) ;
+                url = window.URL.createObjectURL(file) ;
             } else if (window.webkitURL!=undefined) { // webkit or chrome
-            url = window.webkitURL.createObjectURL(file) ;
+                url = window.webkitURL.createObjectURL(file) ;
             }
             return url ;
         },
@@ -257,6 +262,12 @@ export default {
                 }
             });
         },
+        pinglun1:function(){
+            //首先要获取pinglun_name,pinglun_biao_id,tiezi_id,pinglun_neirong,pinglun_img_address,pinglun_time
+            var pl_name = $("#user").html();//评论人可以是自己
+            var bt_id = 0;//往评论表存储的评论id，用来区分  回复的信息
+            var tiezi_id = liuyan_obj.liuyan_id;//获取这条帖子的id
+        }
     }
 }
 </script>

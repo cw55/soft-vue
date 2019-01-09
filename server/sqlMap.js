@@ -19,6 +19,7 @@ var sqlMap = {
         pinglun_take:'select * from pinglun where user_id=?',
         take_select:'select * from ? where ?=?',
         take_liuyan:"select * from liuyan where liuyan_id=?",
+        chaxun_pinglun:"select * from pinglun where tiezi_id=?",
         select_pinglun:"select * from (select * from pinglun iat order by pinglun_time desc) as n limit ?,10",
         add_pinglun:"insert into pinglun (pinglun_name,pinglun_biao_id,tiezi_id,pinglun_neirong,pinglun_img_address,pinglun_time) values (?,?,?,?,?,?)",
     }

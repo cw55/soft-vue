@@ -169,9 +169,24 @@ router.post('/add_contact', (req, res) => {
     })
 });
 
+//添加评论
+router.post('/add_pinglun', (req, res) => {
+    var sql = $sql.user.add_pinglun;
+    var params = req.body;
+    console.log(params);
+    var arr = [params.name,params.louceng,params.tiezi_id,params.neirong,params.address,params.time];
+    conn.query(sql, arr, function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(result)
+        if (result) {
+            jsonWrite(res, result);
+        }
+    })
+});
+
 router.post('/select_contact', (req, res) => {
-    //liuyan_title,liuyan_author,liuyan_neirong,liuyan_news,liuyan_fabu_time,
-    //liuyan_img_address
     var sql = $sql.user.select_contact;
     var params = req.body;
     console.log(params);
@@ -184,19 +199,11 @@ router.post('/select_contact', (req, res) => {
         if (result) {
             jsonWrite(res, result);
         }
-        // res.end(JSON.stringify(result));
-        // if (result) {
-        //     res.end(JSON.stringify(result));
-        // }else{
-        //     res.end(JSON.stringify(result));
-        // }
     })
 });
 
 //取评论数据 
 router.post('/pinglun_take', (req, res) => {
-    //liuyan_title,liuyan_author,liuyan_neirong,liuyan_news,liuyan_fabu_time,
-    //liuyan_img_address
     var sql = $sql.user.pinglun_take;
     var params = req.body;
     console.log(params);
@@ -209,18 +216,27 @@ router.post('/pinglun_take', (req, res) => {
         if (result) {
             jsonWrite(res, result);
         }
-        // res.end(JSON.stringify(result));
-        // if (result) {
-        //     res.end(JSON.stringify(result));
-        // }else{
-        //     res.end(JSON.stringify(result));
-        // }
+    })
+});
+
+
+router.post('/chaxun_pinglun', (req, res) => {
+    var sql = $sql.user.chaxun_pinglun;
+    var params = req.body;
+    console.log(params);
+    var arr = [params.tiezi_id];
+    conn.query(sql, arr, function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(result)
+        if (result) {
+            jsonWrite(res, result);
+        }
     })
 });
 
 router.post('/take_select', (req, res) => {
-    //liuyan_title,liuyan_author,liuyan_neirong,liuyan_news,liuyan_fabu_time,
-    //liuyan_img_address
     var sql = $sql.user.take_select;
     var params = req.body;
     console.log(params);
@@ -233,12 +249,6 @@ router.post('/take_select', (req, res) => {
         if (result) {
             jsonWrite(res, result);
         }
-        // res.end(JSON.stringify(result));
-        // if (result) {
-        //     res.end(JSON.stringify(result));
-        // }else{
-        //     res.end(JSON.stringify(result));
-        // }
     })
 });
 
@@ -258,6 +268,7 @@ router.post('/take_liuyan', (req, res) => {
         }
     })
 });
+
 //通过tiezi_id取评论前10条数据
 router.post('/select_pinglun', (req, res) => {
     var sql = $sql.user.select_pinglun;

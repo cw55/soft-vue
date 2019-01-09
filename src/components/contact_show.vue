@@ -43,26 +43,27 @@
                             </div>
                         </div>
                         <div class="show_list_tiezi_body">
-                            <div class="list_tiezi overflow">
-                                <div class="left d_author">
-                                    <img src="../../static/fengsheng.png" alt="">
-                                    <p><a href="#">{{liuyan_obj.liuyan_author}}</a></p>
-                                </div>
-                                <div class="left d_neirong">
-                                    <div class="list_neirong">
-                                        {{liuyan_obj.liuyan_neirong}}
+                            <div v-for="item in pinglun_obj" :key="item.pinglun_biao_id">
+                                <div class="list_tiezi overflow">
+                                    <div class="left d_author">
+                                        <img src="../../static/fengsheng.png" alt="">
+                                        <p><a href="#">{{item.pinglun_name}}</a></p>
                                     </div>
-                                    <div class="c_img">
-                                        <!-- <img :src="'../../static/uploads/photos/'+item.liuyan_img_address"  height="100px" alt=""> -->
-                                        <img v-if='liuyan_obj.liuyan_img_address' :src="'../../static/uploads/photos/'+liuyan_obj.liuyan_img_address"  height="100px" alt="">
+                                    <div class="left d_neirong">
+                                        <div class="list_neirong">
+                                            {{item.pinglun_neirong}}
+                                        </div>
+                                        <div class="c_img">
+                                            <img v-if='item.pinglun_img_address' :src="'../../static/uploads/photos/'+item.pinglun_img_address"  height="100px" alt="">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list_neirong_nth">
-                                <a rel="noopener" href="#" class="tail-info" data-checkun="un"><img class="icon-jubao" src="../../static/jubao_button_5f60185.png"></a>
-                                <span class="tail-info">1楼</span>
-                                <span class="tail-info">2018-11-14 13:30</span>
-                                <a rel="noopener" href="#" class="p_reply p_reply_first">回复</a>
+                                <div class="list_neirong_nth">
+                                    <a rel="noopener" href="#" class="tail-info" data-checkun="un"><img class="icon-jubao" src="../../static/jubao_button_5f60185.png"></a>
+                                    <span class="tail-info">{{item.pinglun_biao_id}}楼</span>
+                                    <span class="tail-info">{{item.pinglun_time.slice(0,16).split('T').join(" ")}}</span>
+                                    <a rel="noopener" href="#" class="p_reply p_reply_first" :data-huifu="item.pinglun_biao_id">回复</a>
+                                </div>
                             </div>
                         </div>
                         
@@ -141,6 +142,7 @@ export default {
         return {
             pinglun_id:0,
             liuyan_obj:{},
+            pinglun_obj:{},
             kong:false,
             formData:new FormData(),
             imgs: {},
@@ -174,13 +176,15 @@ export default {
             console.log(err)
         })
 
-        // this.$http.post('api/user/take_liuyan',{
-        //     id:mounted
-        // },{}).then((Response)=>{
-        //     console.log(Response)
-        // }).catch(function(err){
-        //     console.log(err)
-        // })
+        this.$http.post('api/user/chaxun_pinglun',{
+            tiezi_id:mounted
+        },{}).then((Response)=>{
+            console.log('Response')
+            console.log(Response)
+            this.pinglun_obj = Response.data;
+        }).catch(function(err){
+            console.log(err)
+        })
     },
     methods:{
         biaoqingbao:function(){
@@ -266,7 +270,19 @@ export default {
             //首先要获取pinglun_name,pinglun_biao_id,tiezi_id,pinglun_neirong,pinglun_img_address,pinglun_time
             var pl_name = $("#user").html();//评论人可以是自己
             var bt_id = 0;//往评论表存储的评论id，用来区分  回复的信息
-            var tiezi_id = liuyan_obj.liuyan_id;//获取这条帖子的id
+            var tiezi_id = this.pinglun_obj[0].tiezi_id;//获取这条帖子的id
+            
+            //取当前最大的评论楼层数
+            var biao_max_arr = [];
+            this.pinglun_obj.forEach((item,index)=>{
+                biao_max_arr.push(item.pinglun_biao_id)
+            })
+            var pinglun_biao_id = biao_max_arr.reduce((a,b)=>{
+                return b > a ? b : a;
+            });
+            console.log('我获取的最大值是：'+pinglun_biao_id);
+            //发送请求时要 +1 楼层不能重复
+            
         }
     }
 }

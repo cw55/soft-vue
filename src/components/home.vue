@@ -152,10 +152,10 @@ ul {
     list-style-type: none;
     padding: 0;
 }
-li {
+#hello li {
     display: inline-block;
 }
-a {
+#hello a {
     color: #42b983;
 }
 #hello {

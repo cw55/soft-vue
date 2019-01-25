@@ -19,9 +19,21 @@ var sqlMap = {
         pinglun_take:'select * from pinglun where user_id=?',
         take_select:'select * from ? where ?=?',
         take_liuyan:"select * from liuyan where liuyan_id=?",
+        //获取评论表中的关于tiezi的数据
         chaxun_pinglun:"select * from pinglun where tiezi_id=?",
         select_pinglun:"select * from (select * from pinglun iat order by pinglun_time desc) as n limit ?,10",
+        //取总留言个数
+        every_liuyan:"SELECT COUNT(*) FROM liuyan",
+        //取总评论个数
+        every_pinglun:"SELECT COUNT(*) FROM pinglun",
         add_pinglun:"insert into pinglun (pinglun_name,pinglun_biao_id,tiezi_id,pinglun_neirong,pinglun_img_address,pinglun_time) values (?,?,?,?,?,?)",
+        //查询评论表中的帖子评论个数
+        cahxun_geshu:"SELECT COUNT(*) FROM pinglun WHERE tiezi_id=?",
+        //回复表插入数据
+        insert_huifu:"insert into huifu values(null, ?,?,?,?,?)",
+        //获取回复表中的关于tiezi的数据
+        take_huifu:"select * from huifu where tiezi_id=?"
+    
     }
 
 }

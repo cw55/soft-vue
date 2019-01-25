@@ -260,6 +260,7 @@ export default {
             $("#myModal").modal('hide');
             document.cookie="user_email="+login_email;
             document.cookie="user_password="+login_password;
+            document.cookie="user_id="+data[0].id;
           }else{
             alert('登陆密码错误，请重试！');
             document.cookie="user_email=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
@@ -298,10 +299,13 @@ export default {
               alert('手机号或邮箱重复');
             }else{
               //注册成功数据，存到cookie
-              $("#myModal").modal('hide');
+              $("#myModal2").modal('hide');
               document.cookie="user_email="+r_email;
               document.cookie="user_password="+r_password;
               this.token_my=1;
+              this.user = r_user;
+              console.log(data.user_id);
+              document.cookie="user_id="+data.user_id;
             }
           } catch (error) {
             
